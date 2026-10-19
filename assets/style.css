@@ -236,3 +236,10 @@ a.copy{text-decoration:none;display:inline-block}
 @media (forced-colors:active){.grad{-webkit-text-fill-color:currentColor;background:none}}
 
 .brand img{width:34px;height:34px;border-radius:10px;object-fit:cover;flex:none}
+
+.support-panel{display:flex;flex-direction:column;gap:12px}
+.support-panel .btn{align-self:flex-start}
+.footer-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.footer-coffee{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:var(--radius);border:1px solid var(--border-strong);color:var(--text);text-decoration:none;font-size:.9rem;font-weight:600}
+.footer-coffee:hover{background:var(--surface-1)}
+@media (max-width:640px){footer.site .wrap{flex-direction:column;align-items:flex-start}.footer-right{align-items:flex-start}}
