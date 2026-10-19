@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The pack with no mods | Links scam findings</title>
+<meta name="description" content="A modpack that lists no mods ships one big file called Performance Helper that steals browser logins, Discord accounts and crypto wallets. Watch how it works.">
+<meta name="theme-color" content="#151538">
+<meta property="og:title" content="The pack with no mods | Links scam findings">
+<meta property="og:description" content="We rip open sketchy modpack zips so you don't have to. Real scams, real malware, broken down step by step with more jokes than a security report has any right to have.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://scams.linkslair.xyz/samples/yunocraft-swapjar.html">
+<meta property="og:image" content="https://scams.linkslair.xyz/assets/embed.gif">
+<meta property="og:image:type" content="image/gif">
+<meta property="og:image:width" content="380">
+<meta property="og:image:height" content="384">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The pack with no mods | Links scam findings">
+<meta name="twitter:description" content="We rip open sketchy modpack zips so you don't have to. Real scams, real malware, broken down step by step with more jokes than a security report has any right to have.">
+<meta name="twitter:image" content="https://scams.linkslair.xyz/assets/embed.gif">
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../" aria-label="Links scam findings, home"><img src="../assets/logo.png" width="34" height="34" alt="" decoding="async">Links scam findings</a>
+  <nav class="main" aria-label="Main"><ul>
+    <li><a href="../#samples" aria-current="page">Samples</a></li><li><a href="../#safety">Stay safe</a></li><li><a href="../#about">About</a></li>
+    <li><button class="icon-btn" id="theme" type="button" aria-pressed="false" aria-label="Switch theme"></button></li>
+  </ul></nav>
+</div></header>
+
+<main id="main"><div class="wrap">
+  <p class="crumbs"><a href="../">Home</a><span aria-hidden="true">/</span><a href="../#samples">Samples</a><span aria-hidden="true">/</span>The pack with no mods</p>
+  <h1>The pack with no mods</h1>
+  <ul class="chips" aria-label="Details"><li class="chip danger">Danger: high</li><li class="chip">Password and wallet stealer</li><li class="chip">Minecraft 1.20.1 / Fabric</li></ul>
+  <p class="tldr"><b>In one sentence</b>A modpack with an empty mod list ships a single 19 MB jar named "Performance Helper". The jar is an infostealer that targets browser logins, Discord sessions and crypto wallets.</p>
+  <dl class="facts">
+    <div class="fact"><dt>First seen</dt><dd>8 Oct 2026</dd></div>
+    <div class="fact"><dt>How it arrived</dt><dd>A zip file posing as a modpack</dd></div>
+    <div class="fact"><dt>What it steals</dt><dd>Browser logins, Discord, crypto wallets</dd></div>
+    <div class="fact"><dt>Antivirus (9 Oct 2026)</dt><dd>3 of 61 flagged it after a re-scan</dd></div>
+  </dl>
+  <div class="actions" style="margin-top:20px"><a class="btn primary" href="https://www.virustotal.com/gui/file/E6973B438F46808321F3B3E7D69CDF41ABB7D65B85D92DA7364722E02032EE0C" target="_blank" rel="noopener noreferrer">Check on VirusTotal <span class="sr-only">(opens in a new tab)</span><span aria-hidden="true">&#8599;</span></a></div>
+  <p class="note">Opens the public scan page for swap.jar, the malicious file in this pack.</p>
+
+  <section aria-labelledby="demo-h" style="padding-top:36px">
+    <h2 id="demo-h">How it works, step by step</h2>
+    <div class="demo">
+      <div>
+        <figure class="stage-card" id="stage" style="margin:0" tabindex="0" role="group" aria-label="Animated diagram"></figure>
+        <div class="controls" role="group" aria-label="Animation controls">
+          <button class="btn ghost" id="prev" type="button">Back</button>
+          <button class="btn ghost" id="auto" type="button" aria-pressed="true" aria-label="Pause the animation">Pause</button>
+          <button class="btn primary" id="next" type="button">Next <span aria-hidden="true">&rarr;</span></button>
+        </div>
+        <div class="progress" aria-hidden="true"><i></i></div>
+        <p class="scroll-hint">Swipe the diagram sideways to see all of it.</p>
+        <p class="note">The animation plays by itself and loops. Pause it any time, or pick a step to jump to it (the left and right arrow keys work too). It is a diagram, not real malware.</p>
+        <p id="live" class="sr-only" aria-live="polite"></p>
+      </div>
+      <ol class="steps" id="steps">
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">1</span><span><strong>A modpack with no mod list</strong><span class="txt">The manifest lists no mods, yet the zip contains a mods folder with a single file: a 19 MB jar called "swap.jar", presented as "Performance Helper" by "Mojang".</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">2</span><span><strong>A heavy file posing as a tweak</strong><span class="txt">Genuine performance mods are small and distributed through official pages. This one bundles libraries for reading Windows credentials and browser databases.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">3</span><span><strong>It starts</strong><span class="txt">The jar can run as a mod when the game loads, or as a standalone program or Java agent. Either path launches the stealer.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">4</span><span><strong>It harvests credentials</strong><span class="txt">It reads saved passwords and cookies from Chrome, Edge, Brave, Opera and Firefox, extracts Discord login tokens, and copies crypto wallet files.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">5</span><span><strong>It exfiltrates and persists</strong><span class="txt">The collected data is packaged and sent to the attacker, and the program installs a startup shortcut and scheduled task so that it survives reboots.</span></span></button></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="spot-h" style="padding-top:20px">
+    <h2 id="spot-h">Spot it, and what to do</h2>
+    <div class="cols">
+      <div class="panel"><h3>How to spot it</h3>
+        <ul class="checks">
+          <li>The modpack's mod list is empty, yet the zip has a mods folder with a file in it.</li>
+          <li>The author is "Mojang". Mojang doesn't publish mods like this, and neither does a "performance" mod from a stranger.</li>
+          <li>The mod is about 19 MB and contains Windows login-theft code, far too heavy for a tweak.</li>
+          <li>The first antivirus scan said "clean". A fresh scan a day later flagged it. Always re-check.</li>
+        </ul></div>
+      <div class="panel"><h3>If you already ran it</h3>
+        <ul class="checks warnlist">
+          <li>Check your Windows Startup folder and Task Scheduler for entries you don't recognise.</li>
+          <li>Look in your <code>hosts</code> file for Discord addresses you didn't add.</li>
+          <li>Change passwords from a clean device, sign out of all sessions, and reset two-step login.</li>
+          <li>Move crypto to a new wallet, then back up your files and reinstall Windows.</li>
+        </ul></div>
+    </div>
+  </section>
+
+  <section style="padding-top:20px" aria-labelledby="tech-h">
+    <h2 id="tech-h">Technical details</h2>
+    <details>
+      <summary>For researchers: how it was analysed</summary>
+      <div>
+        <p>The zip's manifest has an empty <code>files</code> list. <code>overrides/mods/swap.jar</code> declares itself as Fabric mod id <code>perfhelper</code> and as <code>Main-Class</code>, <code>Premain-Class</code> and <code>Agent-Class</code> <code>Main</code>, so it can run as a program, as a Java agent, or as a mod through <code>SwapFabricMod</code> or <code>SwapForgeMod</code>.</p>
+        <p>About 2,900 of its 2,966 entries are bundled libraries. The attacker code is a set of root-level classes that read Chromium and Firefox data (including Chrome's app-bound encryption keys), Discord tokens and wallet extensions. It has an embedded HTTP server with a command interface, edits the hosts file to block Discord QR login, installs a startup shortcut and scheduled task, and impersonates Winlogon to get a SYSTEM token. Some strings are in Turkish.</p>
+        <p>It shares a set of custom Discord badge images with <a href="akita-sparkbot.html">"The fake Fabric API"</a>, which suggests a common builder or kit. That is a lead, not proof of a single author. The two use different code, so this is not a repackaged copy.</p>
+      </div>
+    </details>
+    <details>
+      <summary>File hashes (SHA-256)</summary>
+      <div>
+        <table>
+          <thead><tr><th scope="col">File</th><th scope="col">Hash</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Modpack zip</th><td><div class="hash"><code>518A61154AF449A15D209C36A55DDC77B78DE0000E8754555281AC443B9F095D</code><button class="copy" type="button" data-copy="518A61154AF449A15D209C36A55DDC77B78DE0000E8754555281AC443B9F095D">Copy</button><a class="copy" href="https://www.virustotal.com/gui/file/518A61154AF449A15D209C36A55DDC77B78DE0000E8754555281AC443B9F095D" target="_blank" rel="noopener noreferrer">VirusTotal<span class="sr-only"> (opens in a new tab)</span></a></div></td></tr>
+            <tr><th scope="row">swap.jar</th><td><div class="hash"><code>E6973B438F46808321F3B3E7D69CDF41ABB7D65B85D92DA7364722E02032EE0C</code><button class="copy" type="button" data-copy="E6973B438F46808321F3B3E7D69CDF41ABB7D65B85D92DA7364722E02032EE0C">Copy</button><a class="copy" href="https://www.virustotal.com/gui/file/E6973B438F46808321F3B3E7D69CDF41ABB7D65B85D92DA7364722E02032EE0C" target="_blank" rel="noopener noreferrer">VirusTotal<span class="sr-only"> (opens in a new tab)</span></a></div></td></tr>
+          </tbody>
+        </table>
+        <p class="note">A re-scan on 9 Oct 2026 showed 3 of 61 engines flagging the jar as a password-stealing Java trojan; the first scan a day earlier showed none. Look the hashes up for current results.</p>
+      </div>
+    </details>
+  </section>
+
+  <section aria-labelledby="rel-h" style="padding-top:20px">
+    <h2 id="rel-h">Related samples</h2>
+    <div class="grid">
+      <article class="card"><h3>The modpack with one extra file</h3><p>A small dropper that downloads the real malware later.</p><a class="more" href="bettersurvival-dropper.html">Watch how it works<span class="sr-only">: the modpack with one extra file</span></a></article>
+      <article class="card"><h3>The fake Fabric API</h3><p>An obfuscated program hidden behind a popular mod's name.</p><a class="more" href="akita-sparkbot.html">Watch how it works<span class="sr-only">: the fake Fabric API</span></a></article>
+    </div>
+  </section>
+</div></main>
+
+<footer class="site"><div class="wrap">
+  <div><p><strong>Links scam findings</strong></p><p>Educational use only. Never run files you did not expect.</p></div>
+  <p>&copy; <span id="year">2026</span> <a href="https://linkslair.xyz">linkslair.xyz</a></p>
+</div></footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/stage.js"></script>
+<script>ScamStage.mount('#stage','yuno');</script>
+</body>
+</html>

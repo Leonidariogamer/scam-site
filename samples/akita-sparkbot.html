@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The fake Fabric API | Links scam findings</title>
+<meta name="description" content="A file pretending to be the popular Fabric API mod hides a scrambled spy program that steals logins and reports through Discord. Watch how it works.">
+<meta name="theme-color" content="#151538">
+<meta property="og:title" content="The fake Fabric API | Links scam findings">
+<meta property="og:description" content="We rip open sketchy modpack zips so you don't have to. Real scams, real malware, broken down step by step with more jokes than a security report has any right to have.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://scams.linkslair.xyz/samples/akita-sparkbot.html">
+<meta property="og:image" content="https://scams.linkslair.xyz/assets/embed.gif">
+<meta property="og:image:type" content="image/gif">
+<meta property="og:image:width" content="380">
+<meta property="og:image:height" content="384">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The fake Fabric API | Links scam findings">
+<meta name="twitter:description" content="We rip open sketchy modpack zips so you don't have to. Real scams, real malware, broken down step by step with more jokes than a security report has any right to have.">
+<meta name="twitter:image" content="https://scams.linkslair.xyz/assets/embed.gif">
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../" aria-label="Links scam findings, home"><img src="../assets/logo.png" width="34" height="34" alt="" decoding="async">Links scam findings</a>
+  <nav class="main" aria-label="Main"><ul>
+    <li><a href="../#samples" aria-current="page">Samples</a></li><li><a href="../#safety">Stay safe</a></li><li><a href="../#about">About</a></li>
+    <li><button class="icon-btn" id="theme" type="button" aria-pressed="false" aria-label="Switch theme"></button></li>
+  </ul></nav>
+</div></header>
+
+<main id="main"><div class="wrap">
+  <p class="crumbs"><a href="../">Home</a><span aria-hidden="true">/</span><a href="../#samples">Samples</a><span aria-hidden="true">/</span>The fake Fabric API</p>
+  <h1>The fake Fabric API</h1>
+  <ul class="chips" aria-label="Details"><li class="chip danger">Danger: critical</li><li class="chip">Spy and remote control</li><li class="chip">Minecraft 1.21.1 / Fabric</li></ul>
+  <p class="tldr"><b>In one sentence</b>A file posing as Fabric API, one of the most common Minecraft mods, contains a hidden, obfuscated program. Decoded at runtime, it steals credentials and Discord accounts and can be controlled remotely.</p>
+  <dl class="facts">
+    <div class="fact"><dt>First seen</dt><dd>1 Oct 2026</dd></div>
+    <div class="fact"><dt>How it arrived</dt><dd>Inside a modpack sent to a friend, who was infected</dd></div>
+    <div class="fact"><dt>What it steals</dt><dd>Passwords, cookies, Discord accounts, payment details</dd></div>
+    <div class="fact"><dt>Extra powers</dt><dd>Screenshots, webcam, remote control</dd></div>
+  </dl>
+  <div class="actions" style="margin-top:20px"><a class="btn primary" href="https://www.virustotal.com/gui/file/71DB3A7BEC4AF717297BCCBD29594A0D5C34C35FE42429D77F9C05C173CA2A12" target="_blank" rel="noopener noreferrer">Check on VirusTotal <span class="sr-only">(opens in a new tab)</span><span aria-hidden="true">&#8599;</span></a></div>
+  <p class="note">Opens the public scan page for the decoded payload. It may say "not found" if nobody has submitted it yet.</p>
+
+  <section aria-labelledby="demo-h" style="padding-top:36px">
+    <h2 id="demo-h">How it works, step by step</h2>
+    <div class="demo">
+      <div>
+        <figure class="stage-card" id="stage" style="margin:0" tabindex="0" role="group" aria-label="Animated diagram"></figure>
+        <div class="controls" role="group" aria-label="Animation controls">
+          <button class="btn ghost" id="prev" type="button">Back</button>
+          <button class="btn ghost" id="auto" type="button" aria-pressed="true" aria-label="Pause the animation">Pause</button>
+          <button class="btn primary" id="next" type="button">Next <span aria-hidden="true">&rarr;</span></button>
+        </div>
+        <div class="progress" aria-hidden="true"><i></i></div>
+        <p class="scroll-hint">Swipe the diagram sideways to see all of it.</p>
+        <p class="note">The animation plays by itself and loops. Pause it any time, or pick a step to jump to it (the left and right arrow keys work too). It is a diagram, not real malware.</p>
+        <p id="live" class="sr-only" aria-live="polite"></p>
+      </div>
+      <ol class="steps" id="steps">
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">1</span><span><strong>A familiar mod name</strong><span class="txt">A file named "Fabric API", one of the most widely used Minecraft mods, is bundled into a modpack. The name is meant to discourage scrutiny.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">2</span><span><strong>A large hidden file</strong><span class="txt">The real Fabric API is a few megabytes of organised modules. This copy is nearly empty apart from a 20 MB file with no extension, called "amcik".</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">3</span><span><strong>The payload is decoded</strong><span class="txt">"amcik" is a second program obfuscated with a simple XOR so that antivirus cannot read it. The mod decodes it at runtime, revealing a spy program.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">4</span><span><strong>It establishes persistence</strong><span class="txt">It registers itself to start at every login, using names such as "JavaUpdater" so that it resembles routine maintenance.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">5</span><span><strong>It steals data and reports out</strong><span class="txt">It collects saved passwords, cookies and Discord logins. The attacker controls it through a Discord bot, and it can capture screenshots and webcam images.</span></span></button></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="spot-h" style="padding-top:20px">
+    <h2 id="spot-h">Spot it, and what to do</h2>
+    <div class="cols">
+      <div class="panel"><h3>How to spot it</h3>
+        <ul class="checks">
+          <li>The version number doesn't exist. This claimed to be Fabric API 0.118.7 for Minecraft 1.21.1, but that version was never released.</li>
+          <li>The real jar is a few megabytes with a folder of neatly named parts inside. The fake one is nearly empty but has one huge file with no file type.</li>
+          <li>The real jar's files all share one fixed date from 1980. The fake one has real, recent dates.</li>
+          <li>The license file has the name of a different project.</li>
+        </ul></div>
+      <div class="panel"><h3>If you already ran it</h3>
+        <ul class="checks warnlist">
+          <li>Open Task Scheduler and look for a task called <code>JavaUpdateSched</code>. Check the Windows startup entries for <code>JavaUpdater_2418</code>.</li>
+          <li>Change every password from a clean device, starting with email. Sign out of all Discord sessions.</li>
+          <li>Reinstall Discord completely, because this program changes its files. Make new backup codes.</li>
+          <li>Reinstall Windows, then watch your bank and card activity.</li>
+        </ul></div>
+    </div>
+  </section>
+
+  <section style="padding-top:20px" aria-labelledby="tech-h">
+    <h2 id="tech-h">Technical details</h2>
+    <details>
+      <summary>For researchers: how it was analysed</summary>
+      <div>
+        <p>The fake jar had a roughly 1 KB <code>fabric.mod.json</code>, a small loader, and a 20 MB extensionless resource named <code>amcik</code>. Its bytes were a ZIP file XOR-encoded with the single byte <code>0x06</code> (header <code>56 4D 05 02</code> decodes to <code>50 4B 03 04</code>). The decoded archive is a Java program with main class <code>me.akita.Entrypoint</code> and roughly 1,800 library files (a Discord bot library, an HTTP client, SQLite, JNA, a webcam library).</p>
+        <p>It uses a mutex (<code>Global\SparkBotMtx_7f3a</code>), a scheduled task (<code>JavaUpdateSched</code>) and a registry Run value (<code>JavaUpdater_2418</code>), both launching <code>javaw.exe -jar</code>. Browser theft includes a public bypass of Chrome's app-bound encryption. It also injects JavaScript into the Discord desktop client to capture logins, two-step codes and payment forms.</p>
+        <p>Command and control runs through a Discord bot that opens a channel per victim, plus webhooks. The identifiers of that infrastructure are withheld here on purpose and were not tested.</p>
+        <p>It shares a set of custom Discord badge images with <a href="yunocraft-swapjar.html">"The pack with no mods"</a>, so the two may come from the same builder or kit. That is a lead, not proof of a single author.</p>
+        <p>Why it bothers reading badges at all: an account's visible badges (Early Supporter, HypeSquad, boost level, rare or animated badges) are what a stolen-account reseller uses to price it. The badge-reading code here is account triage, not a cosmetic feature.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Update: contact with an account linked to this malware</summary>
+      <div>
+        <p>In October 2026, an account believed to be connected to a related sample (see <a href="bettersurvival-dropper.html">"The modpack with one extra file"</a>) was contacted directly. What follows is self-reported, and some of it did not hold up.</p>
+        <ul class="checks">
+          <li>The account first claimed to write the malware themselves, plus a separate native executable variant. Later information instead points to a premade kit sold within a Turkish group, so this looks like bragging rather than fact. That fits this sample too: it shares a set of custom badge images with the other sample above, which is easier to explain as two buyers of the same kit than as one person's original code.</li>
+          <li>They claim to test each build against a public scanning service before distributing it, aiming for zero detections.</li>
+          <li>They described stealing high-value Discord accounts specifically to resell them, citing badges like Early Supporter or a long boost history as what sets the price.</li>
+        </ul>
+        <p class="note">Nothing here was obtained by running the malware, and nothing was shared with the account to help it evade detection further.</p>
+      </div>
+    </details>
+    <details>
+      <summary>File hashes (SHA-256)</summary>
+      <div>
+        <table>
+          <thead><tr><th scope="col">File</th><th scope="col">Hash</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Decoded payload (zip)</th><td><div class="hash"><code>71DB3A7BEC4AF717297BCCBD29594A0D5C34C35FE42429D77F9C05C173CA2A12</code><button class="copy" type="button" data-copy="71DB3A7BEC4AF717297BCCBD29594A0D5C34C35FE42429D77F9C05C173CA2A12">Copy</button><a class="copy" href="https://www.virustotal.com/gui/file/71DB3A7BEC4AF717297BCCBD29594A0D5C34C35FE42429D77F9C05C173CA2A12" target="_blank" rel="noopener noreferrer">VirusTotal<span class="sr-only"> (opens in a new tab)</span></a></div></td></tr>
+          </tbody>
+        </table>
+        <p class="note">At last check (9 Oct 2026) this hash was not known to VirusTotal. Results change over time.</p>
+      </div>
+    </details>
+  </section>
+
+  <section aria-labelledby="rel-h" style="padding-top:20px">
+    <h2 id="rel-h">Related samples</h2>
+    <div class="grid">
+      <article class="card"><h3>The modpack with one extra file</h3><p>A small dropper that downloads the real malware later.</p><a class="more" href="bettersurvival-dropper.html">Watch how it works<span class="sr-only">: the modpack with one extra file</span></a></article>
+      <article class="card"><h3>The pack with no mods</h3><p>A single large jar that does the stealing itself.</p><a class="more" href="yunocraft-swapjar.html">Watch how it works<span class="sr-only">: the pack with no mods</span></a></article>
+    </div>
+  </section>
+</div></main>
+
+<footer class="site"><div class="wrap">
+  <div><p><strong>Links scam findings</strong></p><p>Educational use only. Never run files you did not expect.</p></div>
+  <p>&copy; <span id="year">2026</span> <a href="https://linkslair.xyz">linkslair.xyz</a></p>
+</div></footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/stage.js"></script>
+<script>ScamStage.mount('#stage','akita');</script>
+</body>
+</html>
