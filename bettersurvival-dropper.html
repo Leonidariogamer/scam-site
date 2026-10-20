@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The modpack with one extra file | Links scam findings</title>
+<meta name="description" content="A fake CurseForge modpack hides one extra mod that secretly downloads real malware from a file-sharing link. Watch how it works, step by step.">
+<meta name="theme-color" content="#151538">
+<meta property="og:title" content="The modpack with one extra file | Links scam findings">
+<meta property="og:description" content="We rip open sketchy modpack zips so you don't have to. Real scams, real malware, broken down step by step with more jokes than a security report has any right to have.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://scams.linkslair.xyz/samples/bettersurvival-dropper.html">
+<meta property="og:image" content="https://scams.linkslair.xyz/assets/embed.gif">
+<meta property="og:image:type" content="image/gif">
+<meta property="og:image:width" content="380">
+<meta property="og:image:height" content="384">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The modpack with one extra file | Links scam findings">
+<meta name="twitter:description" content="We rip open sketchy modpack zips so you don't have to. Real scams, real malware, broken down step by step with more jokes than a security report has any right to have.">
+<meta name="twitter:image" content="https://scams.linkslair.xyz/assets/embed.gif">
+<link rel="icon" type="image/png" href="../assets/logo.png">
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../" aria-label="Links scam findings, home"><img src="../assets/logo.png" width="34" height="34" alt="" decoding="async">Links scam findings</a>
+  <nav class="main" aria-label="Main"><ul>
+    <li><a href="../#samples" aria-current="page">Samples</a></li><li><a href="../#safety">Stay safe</a></li><li><a href="../#about">About</a></li>
+    <li><button class="icon-btn" id="theme" type="button" aria-pressed="false" aria-label="Switch theme"></button></li>
+  </ul></nav>
+</div></header>
+
+<main id="main"><div class="wrap">
+  <p class="crumbs"><a href="../">Home</a><span aria-hidden="true">/</span><a href="../#samples">Samples</a><span aria-hidden="true">/</span>The modpack with one extra file</p>
+  <h1>The modpack with one extra file</h1>
+  <ul class="chips" aria-label="Details"><li class="chip danger">Danger: high</li><li class="chip">Dropper</li><li class="chip">Minecraft 1.21.1 / Fabric</li></ul>
+  <p class="tldr"><b>In one sentence</b>A modpack that looks like a legitimate CurseForge pack contains one unlisted mod. That mod is a downloader: when the game starts, it fetches the real malware from a file-sharing link.</p>
+  <dl class="facts">
+    <div class="fact"><dt>First seen</dt><dd>18 Oct 2026</dd></div>
+    <div class="fact"><dt>How it arrived</dt><dd>Discord DM from a hacked account</dd></div>
+    <div class="fact"><dt>What it steals</dt><dd>Nothing by itself; installs a second program that does — now confirmed: saved passwords, Discord sessions, clipboard content, and screenshots</dd></div>
+    <div class="fact"><dt>Antivirus (first scan)</dt><dd>0 of 65 flagged it</dd></div>
+  </dl>
+  <div class="actions" style="margin-top:20px"><a class="btn primary" href="https://www.virustotal.com/gui/file/DC8B4947BDCC79E93C7B952A9A921334CEB7F7E4AB03D26C06FB0CCF9C3A01E2" target="_blank" rel="noopener noreferrer">Check on VirusTotal <span class="sr-only">(opens in a new tab)</span><span aria-hidden="true">&#8599;</span></a></div>
+  <p class="note">Opens the public scan page for the extra mod, the malicious file in this pack.</p>
+
+  <section aria-labelledby="demo-h" style="padding-top:36px">
+    <h2 id="demo-h">How it works, step by step</h2>
+    <div class="demo">
+      <div>
+        <figure class="stage-card" id="stage" style="margin:0" tabindex="0" role="group" aria-label="Animated diagram"></figure>
+        <div class="controls" role="group" aria-label="Animation controls">
+          <button class="btn ghost" id="prev" type="button">Back</button>
+          <button class="btn ghost" id="auto" type="button" aria-pressed="true" aria-label="Pause the animation">Pause</button>
+          <button class="btn primary" id="next" type="button">Next <span aria-hidden="true">&rarr;</span></button>
+        </div>
+        <div class="progress" aria-hidden="true"><i></i></div>
+        <p class="scroll-hint">Swipe the diagram sideways to see all of it.</p>
+        <p class="note">The animation plays by itself and loops. Pause it any time, or pick a step to jump to it (the left and right arrow keys work too). It is a diagram, not real malware.</p>
+        <p id="live" class="sr-only" aria-live="polite"></p>
+      </div>
+      <ol class="steps" id="steps">
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">1</span><span><strong>The pack arrives</strong><span class="txt">A modpack is shared as a zip, usually by a hacked account. Its manifest lists real, well-known mods, so it looks legitimate.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">2</span><span><strong>A hidden mod loads</strong><span class="txt">One extra jar in the mods folder is missing from that list. When the game starts, Fabric runs its start-up code in the background.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">3</span><span><strong>It downloads a payload</strong><span class="txt">The mod creates a folder in your local app data and downloads a zip from a file-sharing link.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">4</span><span><strong>It unpacks and cleans up</strong><span class="txt">The zip is extracted and then deleted. It contains a portable Java runtime and a program named services.jar.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">5</span><span><strong>The second stage runs</strong><span class="txt">services.jar is launched with the bundled Java, so it works even if Java is not installed on the victim's PC.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">6</span><span><strong>Data is exfiltrated</strong><span class="txt">Confirmed by testing: it reads saved browser passwords, grabs Discord session data, can swap clipboard content and take screenshots, then phones home to report in.</span></span></button></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="spot-h" style="padding-top:20px">
+    <h2 id="spot-h">Spot it, and what to do</h2>
+    <div class="cols">
+      <div class="panel"><h3>How to spot it</h3>
+        <ul class="checks">
+          <li>The modpack's list names real mods, but there is one extra file in the mods folder that is not on the list.</li>
+          <li>The extra mod has a vague name and description, an official-sounding author ("Fabric Team"), and is only a few kilobytes. Real mods are usually megabytes.</li>
+          <li>It came from a chat message, not from the CurseForge or Modrinth page.</li>
+          <li>It arrived from a friend who "never sends files". Their account may be hacked.</li>
+        </ul></div>
+      <div class="panel"><h3>If you already ran it</h3>
+        <ul class="checks warnlist">
+          <li>Look for a <code>java</code> folder inside <code>%LOCALAPPDATA%</code> containing <code>services.jar</code>. If it exists, treat the PC as infected.</li>
+          <li>Change passwords from a different, clean device. Email first, then Discord, Steam, Microsoft and your bank.</li>
+          <li>Sign out of all sessions, redo two-step login, and move any crypto to a new wallet — this one can silently swap wallet addresses you copy/paste, so double-check any crypto transfer you made while it was running.</li>
+          <li>Back up your files and reinstall Windows to be sure.</li>
+        </ul></div>
+    </div>
+  </section>
+
+  <section style="padding-top:20px" aria-labelledby="tech-h">
+    <h2 id="tech-h">Technical details</h2>
+    <details>
+      <summary>For researchers: how it was analysed</summary>
+      <div>
+        <p>The zip's manifest lists 19 genuine CurseForge projects. The extra file is <code>overrides/mods/BetterSurvival.jar</code> (6,337 bytes) with one class, <code>com.example.mod.mc</code>, in the default template package. It is obfuscated with ZKM (Zelix KlassMaster), which encrypts every string.</p>
+        <p>The strings were recovered statically by re-implementing the decryption routine from the class's bytecode, without executing the sample. The result is the chain in step 3 to 5: create <code>%LOCALAPPDATA%\java</code>, download <code>java.zip</code> from a file-sharing link, unpack and delete it, then run <code>services.jar</code> with the bundled <code>javaw.exe</code>. The download address is withheld here on purpose.</p>
+        <p>A second copy of the pack, sent a day later under a new filename (<code>BetterCraft.jar</code>), used the same structure with freshly randomised obfuscation constants. Decoding it the same way produced a new download link, which was still live. See the update below for what that led to.</p>
+        <p>A third-party sandbox run of the jar executed it as a plain Java program, so the Fabric start-up code never triggered. That is why it showed no behaviour.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Update: why the second stage stayed silent in testing, and what it actually does</summary>
+      <div>
+        <p>Early tests of the second stage (<code>services.jar</code>) inside a virtual machine showed no network activity at all, even after letting it run for half an hour. Running the exact same unmodified file on a real, disposable computer with no virtual machine involved produced activity within seconds: it looked up a command-and-control address and checked in with it three times, and separately tried to contact Discord's real servers.</p>
+        <p>This confirms the program deliberately checks whether it's running inside a virtual machine or analysis sandbox before doing anything, and goes dormant if it thinks it is. Recovered from the program's own memory while it ran: it checks for dozens of known virtual-machine and sandbox driver files, process names, and even a huge list of computer names used by specific automated analysis services, plus an explicit, named check for Microsoft's own Hyper-V virtualization feature. This is a widely-reused checklist copied across many stealer kits, not something built specifically for this sample.</p>
+        <p>Also now confirmed directly, rather than assumed: it reads saved passwords out of Chrome/Edge's own password database (using the same Windows feature those browsers use to protect them, turned against the user), it specifically goes after Discord's local session files, it can silently replace whatever is on your clipboard (the classic trick for swapping a copied crypto wallet address for the attacker's own), and it can take screenshots. It also opens a plain window with scrolling text while it works, most likely to look like normal "loading" output and keep the victim from getting suspicious.</p>
+        <p class="note">All of this was confirmed by reading what the program does and by observing its network traffic, never by using any data it collected. The command-and-control address it contacts is withheld here on purpose, same as the original download link.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Update: contact with an account linked to this malware</summary>
+      <div>
+        <p>In October 2026, an account believed to be connected to this sample's distribution was contacted directly. What follows is self-reported by that account, and some of it did not hold up.</p>
+        <ul class="checks">
+          <li>The account first claimed to write the malware themselves in Java, using a custom obfuscator on top of a commercial one. Later information instead points to a premade builder sold for around $300 within a Turkish group, so this looks like bragging rather than fact. The obfuscation is likely a feature of that kit, not original work.</li>
+          <li>They claim to test each build against a public scanning service before distributing it, aiming for zero detections.</li>
+          <li>They said the download link in this sample gets suspended whenever someone reports it, forcing a rebuild with a new link each time. <strong>That confirms reporting these links works</strong> — it costs a rebuild and a redistribution cycle, not just one deleted file.</li>
+        </ul>
+        <p class="note">Nothing here was obtained by running the malware, and nothing was shared with the account to help it evade detection or reporting further.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Update: the second stage (services.jar) was recovered and decompiled</summary>
+      <div>
+        <p>A live download link from the second build (above) was followed statically: a 55 MB archive containing a portable Java runtime and the real payload, <code>services.jar</code> (12 MB). A separate attempt to read this file with ordinary tools reportedly used up 48 GB of memory without finishing.</p>
+        <p>The cause turned out to be a handful of individual program components deliberately bloated to the point that tools which try to reconstruct readable code from them run out of memory, rather than a huge number of components. Reading it one small piece at a time instead avoided the problem, and nearly the whole program was turned back into readable, if still obfuscated-looking, source code. No part of it was ever run.</p>
+        <p>Two plain-text markers found inside <code>services.jar</code> confirm it is a licensed, bought product rather than something the distributor wrote: a license code and a long reference number, sitting unencrypted in the file.</p>
+        <p>Confirmed directly in the code: it uses a library typically used to maintain a live connection to Discord, consistent with how the related "fake Fabric API" sample reports back to its operator. It also contains Windows system calls specifically used to detect and defeat an attached debugger, a standard anti-analysis measure.</p>
+        <p>What could not be recovered: the program's actual secrets (the address it reports to, names it uses to blend in, and so on) stay hidden behind their own obfuscation, and unlike the small first-stage mod, this one does not use one single trick for all of it. Different parts scramble their text in different ways, so there is no single fix that unlocks everything. This is where the analysis stopped.</p>
+      </div>
+    </details>
+    <details>
+      <summary>File hashes (SHA-256)</summary>
+      <div>
+        <table>
+          <thead><tr><th scope="col">File</th><th scope="col">Hash</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Modpack zip</th><td><div class="hash"><code>6978177AE29F69BD938D68B9EFB84D76ACFAC031543EECD0841C40CC6A7241FA</code><button class="copy" type="button" data-copy="6978177AE29F69BD938D68B9EFB84D76ACFAC031543EECD0841C40CC6A7241FA">Copy</button><a class="copy" href="https://www.virustotal.com/gui/file/6978177AE29F69BD938D68B9EFB84D76ACFAC031543EECD0841C40CC6A7241FA" target="_blank" rel="noopener noreferrer">VirusTotal<span class="sr-only"> (opens in a new tab)</span></a></div></td></tr>
+            <tr><th scope="row">Extra mod (dropper)</th><td><div class="hash"><code>DC8B4947BDCC79E93C7B952A9A921334CEB7F7E4AB03D26C06FB0CCF9C3A01E2</code><button class="copy" type="button" data-copy="DC8B4947BDCC79E93C7B952A9A921334CEB7F7E4AB03D26C06FB0CCF9C3A01E2">Copy</button><a class="copy" href="https://www.virustotal.com/gui/file/DC8B4947BDCC79E93C7B952A9A921334CEB7F7E4AB03D26C06FB0CCF9C3A01E2" target="_blank" rel="noopener noreferrer">VirusTotal<span class="sr-only"> (opens in a new tab)</span></a></div></td></tr>
+            <tr><th scope="row">Second build, modpack zip</th><td><div class="hash"><code>9F69624B103EE89533C0F618AFB4C900D140C03489F141595470B181DEC6879B</code><button class="copy" type="button" data-copy="9F69624B103EE89533C0F618AFB4C900D140C03489F141595470B181DEC6879B">Copy</button><a class="copy" href="https://www.virustotal.com/gui/file/9F69624B103EE89533C0F618AFB4C900D140C03489F141595470B181DEC6879B" target="_blank" rel="noopener noreferrer">VirusTotal<span class="sr-only"> (opens in a new tab)</span></a></div></td></tr>
+            <tr><th scope="row">Second build, dropper (BetterCraft.jar)</th><td><div class="hash"><code>723E5E1BA60730CF388717EF16CB4E74098C7F6D3C76BECBA2C83A3A3E764CC6</code><button class="copy" type="button" data-copy="723E5E1BA60730CF388717EF16CB4E74098C7F6D3C76BECBA2C83A3A3E764CC6">Copy</button><a class="copy" href="https://www.virustotal.com/gui/file/723E5E1BA60730CF388717EF16CB4E74098C7F6D3C76BECBA2C83A3A3E764CC6" target="_blank" rel="noopener noreferrer">VirusTotal<span class="sr-only"> (opens in a new tab)</span></a></div></td></tr>
+            <tr><th scope="row">Second stage (services.jar)</th><td><div class="hash"><code>78A5F08D66F152E5B2458F550D2221A4F254DE8CF3015582B2FE67E05FBC7C89</code><button class="copy" type="button" data-copy="78A5F08D66F152E5B2458F550D2221A4F254DE8CF3015582B2FE67E05FBC7C89">Copy</button><a class="copy" href="https://www.virustotal.com/gui/file/78A5F08D66F152E5B2458F550D2221A4F254DE8CF3015582B2FE67E05FBC7C89" target="_blank" rel="noopener noreferrer">VirusTotal<span class="sr-only"> (opens in a new tab)</span></a></div></td></tr>
+          </tbody>
+        </table>
+        <p class="note">Antivirus scores change as vendors update. At the first scan (18 Oct 2026) none of 65 engines flagged the jar. Look the hashes up on a scanning service for current results.</p>
+      </div>
+    </details>
+    <p class="callout" style="margin-top:18px">Why antivirus misses this: the file you receive is tiny and does nothing suspicious until the game loads it. The bad part is downloaded later.</p>
+  </section>
+
+  <section aria-labelledby="rel-h" style="padding-top:20px">
+    <h2 id="rel-h">Related samples</h2>
+    <div class="grid">
+      <article class="card"><h3>The fake Fabric API</h3><p>An obfuscated program hidden behind a popular mod's name.</p><a class="more" href="akita-sparkbot.html">Watch how it works<span class="sr-only">: the fake Fabric API</span></a></article>
+      <article class="card"><h3>The pack with no mods</h3><p>A single large jar that does the stealing itself.</p><a class="more" href="yunocraft-swapjar.html">Watch how it works<span class="sr-only">: the pack with no mods</span></a></article>
+    </div>
+  </section>
+</div></main>
+
+<footer class="site"><div class="wrap">
+  <div><p><strong>Links scam findings</strong></p><p>Educational use only. Never run files you did not expect.</p></div>
+  <div class="footer-right">
+    <a class="footer-coffee" href="https://buymeacoffee.com/link_thefox" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 9h12v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Buy me a coffee<span class="sr-only"> (opens in a new tab)</span>
+    </a>
+    <p>&copy; <span id="year">2026</span> <a href="https://linkslair.xyz">linkslair.xyz</a></p>
+  </div>
+</div></footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/stage.js"></script>
+<script>ScamStage.mount('#stage','dropper');</script>
+</body>
+</html>
