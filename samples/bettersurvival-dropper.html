@@ -67,7 +67,34 @@
         <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">3</span><span><strong>It downloads a payload</strong><span class="txt">The mod creates a folder in your local app data and downloads a zip from a file-sharing link.</span></span></button></li>
         <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">4</span><span><strong>It unpacks and cleans up</strong><span class="txt">The zip is extracted and then deleted. It contains a portable Java runtime and a program named services.jar.</span></span></button></li>
         <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">5</span><span><strong>The second stage runs</strong><span class="txt">services.jar is launched with the bundled Java, so it works even if Java is not installed on the victim's PC.</span></span></button></li>
-        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">6</span><span><strong>Data is exfiltrated</strong><span class="txt">Confirmed by testing: it reads saved browser passwords, grabs Discord session data, can swap clipboard content and take screenshots, then phones home to report in.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">6</span><span><strong>The second stage takes over</strong><span class="txt">From here it's a full stealer in its own right — see exactly what it does and how it avoids getting caught, below.</span></span></button></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="demo2-h" style="padding-top:20px">
+    <h2 id="demo2-h">What the second stage actually does</h2>
+    <div class="demo" id="demo2">
+      <div>
+        <figure class="stage-card" id="stage2" style="margin:0" tabindex="0" role="group" aria-label="Animated diagram"></figure>
+        <div class="controls" role="group" aria-label="Animation controls">
+          <button class="btn ghost" id="prev2" type="button">Back</button>
+          <button class="btn ghost" id="auto2" type="button" aria-pressed="true" aria-label="Pause the animation">Pause</button>
+          <button class="btn primary" id="next2" type="button">Next <span aria-hidden="true">&rarr;</span></button>
+        </div>
+        <div class="progress" aria-hidden="true"><i></i></div>
+        <p class="scroll-hint">Swipe the diagram sideways to see all of it.</p>
+        <p class="note">Confirmed by running the unmodified file on real, disposable hardware and watching what it actually did. It is a diagram, not real malware.</p>
+        <p id="live2" class="sr-only" aria-live="polite"></p>
+      </div>
+      <ol class="steps" id="steps2">
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">1</span><span><strong>It launches quietly</strong><span class="txt">services.jar starts in the background with the bundled Java. Nothing visible happens yet.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">2</span><span><strong>It checks the computer</strong><span class="txt">Before doing anything else, it looks for signs this isn't a real victim's PC.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">3</span><span><strong>Test labs get nothing</strong><span class="txt">It checks for dozens of known virtual-machine and sandbox markers, including a named check for Microsoft's own Hyper-V. Find one, and it goes dormant — in testing inside a VM it produced zero network activity at all.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">4</span><span><strong>On a real PC, it steals</strong><span class="txt">Saved browser passwords, Discord session data, clipboard content (it can silently swap a copied wallet address), and screenshots.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">5</span><span><strong>It checks in with a "license"</strong><span class="txt">It contacts an address carrying what looks like a software license code, the same one sitting unencrypted inside the file.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">6</span><span><strong>That address is a relay</strong><span class="txt">It isn't a licensing server. It quietly forwards everything to a private Discord channel — confirmed by the exact error message Discord's own servers sent back through it.</span></span></button></li>
+        <li><button class="step-btn" type="button"><span class="num" aria-hidden="true">7</span><span><strong>The seller gets it all</strong><span class="txt">Whoever rents out this kit can see each copy check in by its license number, and advertises the same channel for sending commands back to it.</span></span></button></li>
       </ol>
     </div>
   </section>
@@ -95,43 +122,13 @@
   <section style="padding-top:20px" aria-labelledby="tech-h">
     <h2 id="tech-h">Technical details</h2>
     <details>
-      <summary>For researchers: how it was analysed</summary>
+      <summary>For researchers: how this was analysed</summary>
       <div>
-        <p>The zip's manifest lists 19 genuine CurseForge projects. The extra file is <code>overrides/mods/BetterSurvival.jar</code> (6,337 bytes) with one class, <code>com.example.mod.mc</code>, in the default template package. It is obfuscated with ZKM (Zelix KlassMaster), which encrypts every string.</p>
-        <p>The strings were recovered statically by re-implementing the decryption routine from the class's bytecode, without executing the sample. The result is the chain in step 3 to 5: create <code>%LOCALAPPDATA%\java</code>, download <code>java.zip</code> from a file-sharing link, unpack and delete it, then run <code>services.jar</code> with the bundled <code>javaw.exe</code>. The download address is withheld here on purpose.</p>
-        <p>A second copy of the pack, sent a day later under a new filename (<code>BetterCraft.jar</code>), used the same structure with freshly randomised obfuscation constants. Decoding it the same way produced a new download link, which was still live. See the update below for what that led to.</p>
-        <p>A third-party sandbox run of the jar executed it as a plain Java program, so the Fabric start-up code never triggered. That is why it showed no behaviour.</p>
-      </div>
-    </details>
-    <details>
-      <summary>Update: why the second stage stayed silent in testing, and what it actually does</summary>
-      <div>
-        <p>Early tests of the second stage (<code>services.jar</code>) inside a virtual machine showed no network activity at all, even after letting it run for half an hour. Running the exact same unmodified file on a real, disposable computer with no virtual machine involved produced activity within seconds: it looked up a command-and-control address and checked in with it three times, and separately tried to contact Discord's real servers.</p>
-        <p>This confirms the program deliberately checks whether it's running inside a virtual machine or analysis sandbox before doing anything, and goes dormant if it thinks it is. Recovered from the program's own memory while it ran: it checks for dozens of known virtual-machine and sandbox driver files, process names, and even a huge list of computer names used by specific automated analysis services, plus an explicit, named check for Microsoft's own Hyper-V virtualization feature. This is a widely-reused checklist copied across many stealer kits, not something built specifically for this sample.</p>
-        <p>Also now confirmed directly, rather than assumed: it reads saved passwords out of Chrome/Edge's own password database (using the same Windows feature those browsers use to protect them, turned against the user), it specifically goes after Discord's local session files, it can silently replace whatever is on your clipboard (the classic trick for swapping a copied crypto wallet address for the attacker's own), and it can take screenshots. It also opens a plain window with scrolling text while it works, most likely to look like normal "loading" output and keep the victim from getting suspicious.</p>
-        <p class="note">All of this was confirmed by reading what the program does and by observing its network traffic, never by using any data it collected. The command-and-control address it contacts is withheld here on purpose, same as the original download link.</p>
-      </div>
-    </details>
-    <details>
-      <summary>Update: contact with an account linked to this malware</summary>
-      <div>
-        <p>In October 2026, an account believed to be connected to this sample's distribution was contacted directly. What follows is self-reported by that account, and some of it did not hold up.</p>
-        <ul class="checks">
-          <li>The account first claimed to write the malware themselves in Java, using a custom obfuscator on top of a commercial one. Later information instead points to a premade builder sold for around $300 within a Turkish group, so this looks like bragging rather than fact. The obfuscation is likely a feature of that kit, not original work.</li>
-          <li>They claim to test each build against a public scanning service before distributing it, aiming for zero detections.</li>
-          <li>They said the download link in this sample gets suspended whenever someone reports it, forcing a rebuild with a new link each time. <strong>That confirms reporting these links works</strong> — it costs a rebuild and a redistribution cycle, not just one deleted file.</li>
-        </ul>
-        <p class="note">Nothing here was obtained by running the malware, and nothing was shared with the account to help it evade detection or reporting further.</p>
-      </div>
-    </details>
-    <details>
-      <summary>Update: the second stage (services.jar) was recovered and decompiled</summary>
-      <div>
-        <p>A live download link from the second build (above) was followed statically: a 55 MB archive containing a portable Java runtime and the real payload, <code>services.jar</code> (12 MB). A separate attempt to read this file with ordinary tools reportedly used up 48 GB of memory without finishing.</p>
-        <p>The cause turned out to be a handful of individual program components deliberately bloated to the point that tools which try to reconstruct readable code from them run out of memory, rather than a huge number of components. Reading it one small piece at a time instead avoided the problem, and nearly the whole program was turned back into readable, if still obfuscated-looking, source code. No part of it was ever run.</p>
-        <p>Two plain-text markers found inside <code>services.jar</code> confirm it is a licensed, bought product rather than something the distributor wrote: a license code and a long reference number, sitting unencrypted in the file.</p>
-        <p>Confirmed directly in the code: it uses a library typically used to maintain a live connection to Discord, consistent with how the related "fake Fabric API" sample reports back to its operator. It also contains Windows system calls specifically used to detect and defeat an attached debugger, a standard anti-analysis measure.</p>
-        <p>What could not be recovered: the program's actual secrets (the address it reports to, names it uses to blend in, and so on) stay hidden behind their own obfuscation, and unlike the small first-stage mod, this one does not use one single trick for all of it. Different parts scramble their text in different ways, so there is no single fix that unlocks everything. This is where the analysis stopped.</p>
+        <p>The zip's manifest lists 19 genuine CurseForge projects. The extra file is <code>overrides/mods/BetterSurvival.jar</code> (6,337 bytes) with one class, <code>com.example.mod.mc</code>, in the default Fabric template package, obfuscated with ZKM (Zelix KlassMaster), which encrypts every string. Strings were recovered statically by re-implementing the decryption routine from the class's bytecode, without executing the sample, giving the chain in steps 3 to 6. A third-party sandbox run of the jar executed it as a plain Java program, so the Fabric start-up code never triggered — that's why it showed no behaviour there. A second copy of the pack, sent a day later under a new filename (<code>BetterCraft.jar</code>), used the same structure with freshly randomised obfuscation constants and a new, still-live download link, which is where the rest of this came from.</p>
+        <p>That link's archive (55 MB) held a portable Java runtime and the real payload, <code>services.jar</code> (12 MB). A separate third-party attempt to read this file with ordinary tools reportedly used up 48 GB of memory without finishing — the cause turned out to be a handful of individual program components deliberately bloated to the point that tools which try to reconstruct readable code from them run out of memory, not a huge number of components as the distributor claimed. Reading it one small piece at a time instead avoided the problem, and the whole program was turned back into readable, if still obfuscated-looking, source code (download below). Two plain-text markers inside it, a license code and a long reference number, confirm it's a licensed, bought product rather than something the distributor wrote themselves.</p>
+        <p>The second diagram above (what the second stage actually does) was confirmed by running the unmodified file on a real, disposable computer and watching it directly, after noticing it did nothing at all in a virtual machine. Its actual secrets — the exact address it reports to, names it uses to blend in — stay hidden behind their own obfuscation and were not recoverable: unlike the small first-stage mod, this one doesn't use one single trick for its text, so there's no single fix that unlocks everything.</p>
+        <p>Separately, in October 2026, an account believed to be connected to this sample's distribution was contacted directly. Some of what they said didn't hold up: they first claimed to write the malware themselves, which later information contradicts — it's a premade kit, sold through a storefront that was independently found, not original work. They also said the download link gets suspended whenever someone reports it, forcing a rebuild with a new link each time — which matches what actually happened (two separate builds, two separate links), confirming that reporting these links costs the operator a rebuild, not just one deleted file. Nothing here was obtained by running the malware, and nothing was shared with that account to help it evade detection or reporting.</p>
+        <p class="note">Download addresses and the exact command-and-control domain are withheld here on purpose, same as throughout this writeup.</p>
       </div>
     </details>
     <details>
@@ -174,6 +171,9 @@
 </div></footer>
 <script src="../assets/site.js"></script>
 <script src="../assets/stage.js"></script>
-<script>ScamStage.mount('#stage','dropper');</script>
+<script>
+ScamStage.mount('#stage','dropper');
+ScamStage.mount('#stage2','services',{root:'#demo2',prevSel:'#prev2',nextSel:'#next2',autoSel:'#auto2',liveSel:'#live2',stepsSel:'.step-btn'});
+</script>
 </body>
 </html>

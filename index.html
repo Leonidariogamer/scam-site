@@ -44,6 +44,7 @@
 
 <main id="main">
   <div class="hero hero-fx">
+    <img class="hero-mascot" src="assets/logo.png" width="256" height="256" alt="" decoding="async" loading="eager">
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Real scams. Plain English.</p>
@@ -96,7 +97,7 @@
       <h2 id="samples-h">The samples</h2>
       <p class="lead" style="margin-bottom:28px">Each page walks through one sample step by step. Plain language, no jargon, and nothing to download.</p>
       <div class="grid">
-        <article class="card">
+        <article class="card" data-accent="coral">
           <svg class="mini" viewBox="0 0 320 96" aria-hidden="true" focusable="false"><defs><marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
             <g class="mn n-gray" style="--i:0"><rect x="6" y="28" width="66" height="40" rx="8"/><text x="39" y="48" text-anchor="middle" dominant-baseline="central">Pack</text></g>
             <path d="M72 48H84" class="ma a-gray" marker-end="url(#m1)"/>
@@ -110,7 +111,7 @@
           <p>Looks like a normal CurseForge pack. One unlisted mod quietly downloads the real malware after you start the game.</p>
           <a class="more" href="samples/bettersurvival-dropper.html">Watch how it works<span class="sr-only">: the modpack with one extra file</span></a>
         </article>
-        <article class="card">
+        <article class="card" data-accent="red">
           <svg class="mini" viewBox="0 0 320 96" aria-hidden="true" focusable="false"><defs><marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
             <g class="mn n-gray" style="--i:0"><rect x="6" y="28" width="66" height="40" rx="8"/><text x="39" y="48" text-anchor="middle" dominant-baseline="central">Pack</text></g>
             <path d="M72 48H84" class="ma a-gray" marker-end="url(#m2)"/>
@@ -124,7 +125,7 @@
           <p>A file using a popular mod's name hides an obfuscated program. Decoded, it steals accounts and reports to a Discord bot.</p>
           <a class="more" href="samples/akita-sparkbot.html">Watch how it works<span class="sr-only">: the fake Fabric API</span></a>
         </article>
-        <article class="card">
+        <article class="card" data-accent="purple">
           <svg class="mini" viewBox="0 0 320 96" aria-hidden="true" focusable="false"><defs><marker id="m3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
             <g class="mn n-gray" style="--i:0"><rect x="6" y="28" width="66" height="40" rx="8"/><text x="39" y="48" text-anchor="middle" dominant-baseline="central">Pack</text></g>
             <path d="M72 48H84" class="ma a-gray" marker-end="url(#m3)"/>
@@ -156,8 +157,19 @@
       <ol class="tips">
         <li><strong>Download mods only from the official page.</strong>CurseForge and Modrinth list every file. If a "pack" arrives as a zip in a chat, treat it as unsafe.</li>
         <li><strong>A modpack's list should match what's inside.</strong>An extra file that isn't on the list, especially one in the mods folder, is the biggest warning sign.</li>
-        <li><strong>A friend's name isn't proof.</strong>Hacked accounts send these files. Ask on a different app: "did you really send me this?"</li>
+        <li><strong>A friend's name isn't proof.</strong>Almost every one of these starts with a hacked account, not the attacker's own. Accounts get taken over by stealing the login token itself, not the password — which is why the account can keep messaging normally even after a password reset. Treat any unsolicited file or "join my server" link as suspicious no matter who it's from, and confirm on a different app: "did you really send me this?" Discord's own safety guidance says the same thing: a message from a known contact is not a safety signal.</li>
       </ol>
+
+      <h3 style="margin-top:36px">Before you download anything</h3>
+      <p class="lead" style="margin-bottom:24px">None of this needs special tools. A few minutes of checking catches most of these before they ever run.</p>
+      <div class="panel">
+        <ul class="checks">
+          <li><strong>Match it against the official listing.</strong>Find the mod or modpack's real page on CurseForge or Modrinth and compare the file name and size. A file that doesn't match what's actually listed there isn't the real one, whatever it's named.</li>
+          <li><strong>Hash it, then look the hash up — don't upload the file.</strong>On Windows, run <code>Get-FileHash</code> in PowerShell on the file, then paste that hash into VirusTotal's search box. This checks it against everything VirusTotal has already seen without sending it anywhere. A "no results" or "0 detections" hit means the file is simply <em>unseen</em>, not safe — that's exactly what a freshly built scam looks like.</li>
+          <li><strong>Open the archive, don't run it.</strong>A zip or jar can be browsed without extracting or launching anything — Windows File Explorer opens them directly. A real mod is mostly <code>.class</code> files and a manifest. A stray <code>.exe</code>, <code>.bat</code>, or <code>.ps1</code>, or a file structure that doesn't match the pack's own file list, is a visible warning sign.</li>
+        </ul>
+      </div>
+
       <h3 style="margin-top:36px">If you already opened something</h3>
       <div class="cols">
         <div class="panel"><h3>Right now</h3>

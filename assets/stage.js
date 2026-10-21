@@ -58,6 +58,36 @@
       ].concat(BUS(5, 268)).concat([{ d: 'M400 332H488', st: 5, k: 'red', head: true, dash: true, pk: '#E24B4A' }])
     },
 
+    services: {
+      nodes: [
+        { x: 40, y: 60, w: 170, h: 48, t: 'services.jar runs', s: 'the second stage itself', k: 'coral', st: 1 },
+        { x: 40, y: 130, w: 170, h: 48, t: 'Checks the computer', s: 'driver files, processes, hardware', k: 'coral', st: 2 },
+        { x: 240, y: 130, w: 170, h: 48, t: 'Looks like a test lab', s: 'virtual machine or sandbox', k: 'gray', st: 3 },
+        { x: 240, y: 200, w: 170, h: 48, t: 'Stays silent', s: 'confirmed by testing', k: 'gray', st: 3 },
+        { x: 40, y: 310, w: 85, h: 48, t: 'Passwords', k: 'red', st: 4 },
+        { x: 135, y: 310, w: 85, h: 48, t: 'Discord', k: 'red', st: 4 },
+        { x: 230, y: 310, w: 85, h: 48, t: 'Wallets', k: 'red', st: 4 },
+        { x: 325, y: 310, w: 85, h: 48, t: 'Screens', k: 'red', st: 4 },
+        { x: 490, y: 150, w: 160, h: 56, t: '"License check"', s: 'looks official', k: 'purple', st: 5 },
+        { x: 490, y: 230, w: 160, h: 56, t: 'Secretly relays to', s: 'a private Discord channel', k: 'red', st: 6 },
+        { x: 490, y: 310, w: 160, h: 56, t: 'Kit seller', s: 'gets data, can send commands back', k: 'red', st: 7 }
+      ],
+      arrows: [
+        { d: 'M125 108V128', st: 2, k: 'coral', head: true },
+        { d: 'M210 150H238', st: 3, k: 'gray', head: true },
+        { d: 'M325 178V198', st: 3, k: 'gray', head: true },
+        { d: 'M125 178V308', st: 4, k: 'coral', head: true },
+        { d: 'M95 334H410', st: 4, k: 'coral', head: false },
+        { d: 'M82 334V308', st: 4, k: 'coral', head: false },
+        { d: 'M177 334V308', st: 4, k: 'coral', head: false },
+        { d: 'M272 334V308', st: 4, k: 'coral', head: false },
+        { d: 'M367 334V308', st: 4, k: 'coral', head: false },
+        { d: 'M410 334H455V178H488', st: 5, k: 'purple', head: true, dash: true, pk: '#7F77DD' },
+        { d: 'M570 206V228', st: 6, k: 'red', head: true, dash: true, pk: '#E24B4A' },
+        { d: 'M570 286V308', st: 7, k: 'red', head: true, dash: true, pk: '#E24B4A' }
+      ]
+    },
+
     yuno: {
       nodes: [
         { x: 40, y: 60, w: 110, h: 44, t: 'Modpack zip', k: 'gray', st: 1 },
@@ -96,18 +126,20 @@
     return s;
   }
 
-  function mount(sel, id) {
+  function mount(sel, id, opts) {
     var host = document.querySelector(sel), story = STORIES[id];
     if (!host || !story) return;
+    opts = opts || {};
+    var scope = opts.root ? document.querySelector(opts.root) : document;
     host.innerHTML = svgFor(story);
     var q = function (s) { return host.querySelector(s); };
     var items = [].slice.call(host.querySelectorAll('.dg-item'));
-    var btns = [].slice.call(document.querySelectorAll('.step-btn'));
+    var btns = [].slice.call(scope.querySelectorAll(opts.stepsSel || '.step-btn'));
     var N = btns.length, step = 1, timer = null, raf = null, visible = true;
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     var playing = !reduce, STEP_MS = 4800, HOLD_MS = 5200;
-    var live = document.getElementById('live'), bar = document.querySelector('.progress i');
-    var prev = document.getElementById('prev'), next = document.getElementById('next'), tog = document.getElementById('auto'), pkt = q('#pkt');
+    var live = scope.querySelector(opts.liveSel || '#live'), bar = scope.querySelector(opts.progressSel || '.progress i');
+    var prev = scope.querySelector(opts.prevSel || '#prev'), next = scope.querySelector(opts.nextSel || '#next'), tog = scope.querySelector(opts.autoSel || '#auto'), pkt = q('#pkt');
 
     function send(i, color) {
       if (raf) cancelAnimationFrame(raf);
@@ -160,6 +192,7 @@
     if (prev) prev.addEventListener('click', function () { if (step > 1) manual(step - 1); });
     if (tog) tog.addEventListener('click', function () { setPlaying(!playing); });
     document.addEventListener('keydown', function (e) {
+      if (!visible) return;
       if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
       if (e.key === 'ArrowRight' && step < N) manual(step + 1);
       if (e.key === 'ArrowLeft' && step > 1) manual(step - 1);
